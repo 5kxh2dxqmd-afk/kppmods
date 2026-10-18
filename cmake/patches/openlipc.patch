@@ -1,0 +1,35 @@
+--- a/openlipc.h
++++ b/openlipc.h
+@@ -172,6 +172,9 @@
+  * @return The LIPC hash-array handler or NULL upon error. */
+ LIPCha *LipcHasharrayNew(LIPC *lipc);
+ 
++/* Allocate a hash-array sized for the requested payload, plus library overhead. */
++LIPCha *LipcDynamicHasharrayNew(LIPC *lipc, size_t size);
++
+ /**
+  * Free resources associated with the hash-array handler.
+  *
+@@ -581,9 +584,21 @@
+  * @param callback Getter and setter callback function.
+  * @param data Data pointer passed to the callback function.
+  * @return The status code. */
++/* Hash-array callbacks receive separate, library-owned input and output arrays.
++ * Unlike scalar callbacks, registration data is the fifth argument. */
++typedef LIPCcode (*LipcHasharrayCallback)(LIPC *lipc, const char *property,
++                                         LIPCha *input, LIPCha *output, void *data);
+ LIPCcode LipcRegisterHasharrayProperty(LIPC *lipc, const char *property,
+-                                       LipcPropCallback callback,
++                                       LipcHasharrayCallback callback,
+                                        void *data);
++
++/* The callback allocates *output; successful return transfers ownership to LIPC. */
++typedef LIPCcode (*LipcDynamicHasharrayCallback)(LIPC *lipc, const char *property,
++                                                LIPCha *input, LIPCha **output,
++                                                void *data);
++LIPCcode LipcRegisterDynamicHasharrayProperty(LIPC *lipc, const char *property,
++                                              LipcDynamicHasharrayCallback callback,
++                                              void *data);
+ 
+ /**
+  * Unregister property.

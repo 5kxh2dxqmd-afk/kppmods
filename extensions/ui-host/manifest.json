@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "id": "ui-host",
+  "version": "2.0.0-r23",
+  "title": "KPP UI Host",
+  "ui_runtime": {
+    "host": "host.js",
+    "toolkit": "toolkit.js"
+  },
+  "needs": []
+}

@@ -1,0 +1,4 @@
+pre-commit==4.6.2
+pre-commit-hooks==6.0.0
+ruff==0.17.0
+clang-format==23.1.3

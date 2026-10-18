@@ -1,0 +1,36 @@
+{
+    "def": "mimetype",
+    "assoc": {
+        "mimetype": "MT:application/epub+zip",
+        "extensions": ["epub"]
+    }
+},
+{
+    "def": "association",
+    "assoc": {
+        "interface": "application",
+        "handlerId": "com.lab126.booklet.reader",
+        "contentIds": ["MT:application/epub+zip"],
+        "default": "true"
+    }
+},
+{
+    "def": "handlerId",
+    "assoc": {
+        "handlerId": "org.kindle.epub.extractor",
+        "props": {
+            "lib": "/usr/lib/ccat/libEBridge.so",
+            "entry": "load_bridge",
+            "lipcId": "org.kindle.epub.scanner"
+        }
+    }
+},
+{
+    "def": "association",
+    "assoc": {
+        "interface": "extractor",
+        "handlerId": "org.kindle.epub.extractor",
+        "contentIds": ["GL:*.epub", "GL:*.EPUB"],
+        "default": "true"
+    }
+}

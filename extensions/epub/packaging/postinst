@@ -1,0 +1,3 @@
+"$package/prepare.sh"
+"$reload" "$id"
+"$package/scan.sh"

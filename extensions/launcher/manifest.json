@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "id": "launcher",
+  "version": "2.0.0-r23",
+  "title": "App Launcher",
+  "ui": ["main.jsx"],
+  "options": {
+    "title": "Apps",
+    "hiddenTabs": ["chrome.notebook.button", "chrome.lastBook.button"]
+  },
+  "needs": ["ui-host"]
+}

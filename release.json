@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0-r23",
+  "tools": {
+    "patchelf": "0.13.20210805.a949ff2"
+  },
+  "toolchains": {
+    "kindlehf": {
+      "prefix": "arm-kindlehf-linux-gnueabihf"
+    },
+    "kindlepw2": {
+      "prefix": "arm-kindlepw2-linux-gnueabi"
+    }
+  },
+  "sdk": {
+    "revision": "5ad93e1569b567d82e269d2af8cb448c6d635361",
+    "patches": ["tools/packaging/patches/eink-sdk-strip.patch"]
+  },
+  "extensions": [
+    "ui-host",
+    "launcher",
+    "mod-manager",
+    "custom-icons",
+    "quick-settings",
+    "system-tools",
+    "statusbar",
+    "status-items",
+    "fake-registration",
+    "hide-help",
+    "hide-legal"
+  ],
+  "targets": {
+    "kindlepw2": {
+      "architecture": "kindlepw2",
+      "elf_policy": {
+        "OPKG_FIRMWARE_INTERPRETERS": "/lib/ld-linux.so.3",
+        "OPKG_FIRMWARE_LIBRARIES": "libdl.so.2 libpthread.so.0 librt.so.1 libm.so.6 libc.so.6 libstdc++.so.6 libgcc_s.so.1",
+        "OPKG_FIRMWARE_VERSION_LIMITS": "libstdc++.so.6:GLIBCXX_3.4.28:CXXABI_1.3.12",
+        "OPKG_FIRMWARE_VERSION_TAGS": "libstdc++.so.6:CXXABI_ARM_1.3.3 libstdc++.so.6:CXXABI_TM_1"
+      }
+    },
+    "kindlehf": {
+      "architecture": "kindlehf",
+      "elf_policy": {
+        "OPKG_FIRMWARE_INTERPRETERS": "/lib/ld-linux-armhf.so.3",
+        "OPKG_FIRMWARE_LIBRARIES": "libdl.so.2 libpthread.so.0 librt.so.1 libm.so.6 libc.so.6 libstdc++.so.6 libgcc_s.so.1",
+        "OPKG_FIRMWARE_VERSION_LIMITS": "libstdc++.so.6:GLIBCXX_3.4.28:CXXABI_1.3.12",
+        "OPKG_FIRMWARE_VERSION_TAGS": "libstdc++.so.6:CXXABI_ARM_1.3.3 libstdc++.so.6:CXXABI_TM_1"
+      }
+    }
+  }
+}

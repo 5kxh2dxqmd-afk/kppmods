@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "id": "epub",
+  "version": "2.0.0-r2",
+  "description": "Native EPUB reader, catalogue metadata and book covers",
+  "native": {
+    "kppmainapp": [
+      {
+        "abi": {
+          "provider": "kppmainapp",
+          "optional": true,
+          "old_symbol": "_ZN4krpp7feature15documentContext25DocumentContextParserImpl25getFormatTypeForExtensionERKSs",
+          "new_symbol": "_ZNK4krpp7feature15documentContext25DocumentContextParserImpl25getFormatTypeForExtensionERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+        },
+        "variants": {
+          "0": "abi0/libkindle-epub-kpp.so",
+          "1": "abi1/libkindle-epub-kpp.so"
+        }
+      }
+    ],
+    "webreader": [
+      {
+        "abi": {
+          "provider": "/usr/lib/libMobi.so.1",
+          "old_symbol": "_ZNK8Mobi8SDK12BookMetadata10getAuthorsERSt6vectorISsSaISsEE",
+          "new_symbol": "_ZNK8Mobi8SDK12BookMetadata10getAuthorsERSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS7_EE"
+        },
+        "variants": {
+          "0": "abi0/libkindle-epub.so",
+          "1": "abi1/libkindle-epub.so"
+        }
+      }
+    ],
+    "framework": [
+      "libkindle-epub-framework.so",
+      {
+        "abi": {
+          "provider": "/usr/lib/libMobi.so.1",
+          "old_symbol": "_ZNK8Mobi8SDK12BookMetadata10getAuthorsERSt6vectorISsSaISsEE",
+          "new_symbol": "_ZNK8Mobi8SDK12BookMetadata10getAuthorsERSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS7_EE"
+        },
+        "variants": {
+          "0": "abi0/libkindle-epub.so",
+          "1": "abi1/libkindle-epub.so"
+        }
+      }
+    ]
+  },
+  "needs": []
+}

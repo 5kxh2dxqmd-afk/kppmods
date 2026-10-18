@@ -1,0 +1,2 @@
+initctl stop kppmods-epub || :
+"$package/unregister.sh"

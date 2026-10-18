@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>KPPMods Workbench</title>
+    <link rel="stylesheet" href="/stdin.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <pre id="build-error" hidden></pre>
+    <script>
+      let revision;
+      new EventSource('/events').onmessage = (event) => {
+        const state = JSON.parse(event.data);
+        const error = document.getElementById('build-error');
+        error.hidden = !state.errors.length;
+        error.textContent = state.errors.join('\n');
+        if (
+          revision !== undefined &&
+          state.revision !== revision &&
+          !state.errors.length
+        )
+          location.reload();
+        revision = state.revision;
+      };
+    </script>
+    <script type="module" src="/stdin.js"></script>
+  </body>
+</html>

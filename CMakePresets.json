@@ -1,0 +1,43 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/dist/${presetName}"
+      }
+    },
+    {
+      "name": "kindlehf",
+      "inherits": "base",
+      "toolchainFile": "${sourceDir}/cmake/kindlehf.cmake",
+      "cacheVariables": {
+        "KPPMODS_ARCHITECTURE": "kindlehf"
+      }
+    },
+    {
+      "name": "kindlepw2",
+      "inherits": "base",
+      "toolchainFile": "${sourceDir}/cmake/kindlepw2.cmake",
+      "cacheVariables": {
+        "KPPMODS_ARCHITECTURE": "kindlepw2"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "kindlehf",
+      "configurePreset": "kindlehf",
+      "jobs": 4
+    },
+    {
+      "name": "kindlepw2",
+      "configurePreset": "kindlepw2",
+      "jobs": 4
+    }
+  ]
+}

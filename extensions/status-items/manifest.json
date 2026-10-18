@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "id": "status-items",
+  "version": "2.0.0-r23",
+  "title": "Status Bar Items",
+  "ui": ["main.js"],
+  "options": {
+    "items": [
+      {
+        "id": "apps",
+        "title": "Apps",
+        "icon": "apps",
+        "uri": "app://com.lab126.KPPMainApp/?view=KPP_MOD_LAUNCHER_APPS"
+      }
+    ]
+  },
+  "needs": ["ui-host", "org.kppmods.statusbar", "launcher"]
+}

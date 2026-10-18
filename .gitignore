@@ -1,0 +1,9 @@
+node_modules/
+__pycache__/
+.venv/
+.cache/
+.ruff_cache/
+/build/
+/dist/
+.DS_Store
+CMakeUserPresets.json

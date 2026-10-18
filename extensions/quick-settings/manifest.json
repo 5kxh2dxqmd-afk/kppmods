@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "id": "quick-settings",
+  "version": "2.0.0-r23",
+  "title": "Quick Settings",
+  "ui": ["main.js"],
+  "options": {
+    "buttons": [
+      {
+        "id": "apps",
+        "title": "Apps",
+        "icon": "custom-icons:apps",
+        "action": "apps"
+      }
+    ]
+  },
+  "actions": {
+    "apps": {
+      "argv": [
+        "/usr/bin/lipc-set-prop",
+        "com.lab126.appmgrd",
+        "start",
+        "app://com.lab126.KPPMainApp/?view=KPP_MOD_LAUNCHER_APPS"
+      ],
+      "user": "framework"
+    }
+  },
+  "needs": ["ui-host", "custom-icons", "launcher"]
+}

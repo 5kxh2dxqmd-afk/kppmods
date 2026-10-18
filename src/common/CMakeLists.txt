@@ -1,0 +1,6 @@
+foreach(abi RANGE 0 1)
+    add_library(kppmods-json-${abi} STATIC json.cpp)
+    set_target_properties(kppmods-json-${abi} PROPERTIES POSITION_INDEPENDENT_CODE ON CXX_STANDARD 17)
+    target_compile_definitions(kppmods-json-${abi} PUBLIC _GLIBCXX_USE_CXX11_ABI=${abi})
+    target_link_libraries(kppmods-json-${abi} PUBLIC kppmods-build)
+endforeach()

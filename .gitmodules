@@ -1,0 +1,15 @@
+[submodule "vendor/boost"]
+	path = vendor/boost
+	url = https://github.com/boostorg/boost.git
+[submodule "vendor/openlipc"]
+	path = vendor/openlipc
+	url = https://github.com/arkq/openlipc.git
+[submodule "vendor/utfcpp"]
+	path = vendor/utfcpp
+	url = https://github.com/nemtrif/utfcpp.git
+[submodule "vendor/hermes-dec"]
+	path = vendor/hermes-dec
+	url = https://github.com/P1sec/hermes-dec.git
+[submodule "vendor/react-kindle"]
+	path = vendor/react-kindle
+	url = https://github.com/katadelos/react-kindle.git

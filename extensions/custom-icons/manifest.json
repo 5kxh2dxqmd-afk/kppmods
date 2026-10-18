@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "id": "custom-icons",
+  "version": "2.0.0-r23",
+  "title": "Custom Icons",
+  "ui": ["main.js"],
+  "options": {
+    "icons": [
+      {
+        "id": "apps",
+        "path": "assets/apps.svg"
+      },
+      {
+        "id": "extensions",
+        "path": "assets/extensions.svg"
+      }
+    ]
+  },
+  "needs": ["ui-host"]
+}

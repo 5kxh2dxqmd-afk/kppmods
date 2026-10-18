@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "id": "mod-manager",
+  "version": "2.0.0-r23",
+  "title": "Mods",
+  "ui": ["main.jsx"],
+  "needs": ["ui-host"]
+}

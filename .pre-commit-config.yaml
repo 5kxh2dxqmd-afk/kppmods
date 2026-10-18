@@ -1,0 +1,48 @@
+exclude: ^(vendor/|src/runtime/hermes/tables\.inc$)
+repos:
+  - repo: local
+    hooks:
+      - id: eslint
+        name: ESLint
+        entry: node_modules/.bin/eslint --max-warnings=0
+        language: system
+        files: \.(js|jsx|cjs|mjs)$
+      - id: prettier
+        name: Prettier
+        entry: node_modules/.bin/prettier --check
+        language: system
+        types_or: [javascript, jsx, json, css, markdown, yaml]
+      - id: ruff-check
+        name: Ruff lint
+        entry: .venv/bin/ruff check
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: Ruff format
+        entry: .venv/bin/ruff format --check
+        language: system
+        types: [python]
+      - id: clang-format
+        name: C/C++ format
+        entry: .venv/bin/clang-format --dry-run --Werror
+        language: system
+        types_or: [c, c++]
+      - id: check-merge-conflict
+        name: Merge conflict markers
+        entry: .venv/bin/check-merge-conflict
+        language: system
+        types: [text]
+      - id: check-json
+        name: JSON syntax
+        entry: .venv/bin/check-json
+        language: system
+        types: [json]
+      - id: check-yaml
+        name: YAML syntax
+        entry: .venv/bin/check-yaml
+        language: system
+        types: [yaml]
+      - id: check-added-large-files
+        name: Large added files
+        entry: .venv/bin/check-added-large-files --maxkb=1024
+        language: system

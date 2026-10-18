@@ -1,0 +1,5 @@
+add_library(kppmods-statusbar SHARED statusbar.cpp "${PROJECT_SOURCE_DIR}/src/host/allocation-support.cpp")
+set_target_properties(kppmods-statusbar PROPERTIES CXX_STANDARD 17 LIBRARY_OUTPUT_DIRECTORY "${KPPMODS_NATIVE_OUTPUT}/modules")
+target_link_libraries(kppmods-statusbar PRIVATE kppmods-json-0 dl)
+target_link_options(kppmods-statusbar PRIVATE "LINKER:--version-script=${CMAKE_CURRENT_SOURCE_DIR}/statusbar.exports")
+set_property(TARGET kppmods-statusbar APPEND PROPERTY LINK_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/statusbar.exports")

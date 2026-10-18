@@ -1,0 +1,2 @@
+rm -f /var/run/kppmods-upstart/kppmods-epub.conf
+"$reload" "$id"

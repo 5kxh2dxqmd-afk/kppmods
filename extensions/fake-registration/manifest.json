@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "id": "fake-registration",
+  "version": "2.0.0-r23",
+  "title": "Fake Registration",
+  "description": "Override KPP interface and native registration queries locally. Does not register an account or provide Amazon credentials.",
+  "ui": ["main.js"],
+  "needs": ["ui-host"],
+  "native": {
+    "kppmainapp": ["lib/libkppmods-fake-registration.so"]
+  },
+  "modules": [
+    {
+      "id": "registration",
+      "process": "kppmainapp",
+      "path": "lib/libkppmods-fake-registration.so"
+    }
+  ]
+}

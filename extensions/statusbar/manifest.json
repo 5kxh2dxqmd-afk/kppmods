@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "id": "org.kppmods.statusbar",
+  "version": "2.0.0-r23",
+  "title": "Status Bar Host",
+  "modules": [
+    {
+      "id": "statusbar",
+      "process": "statusbar",
+      "path": "lib/libkppmods-statusbar.so"
+    }
+  ],
+  "needs": []
+}

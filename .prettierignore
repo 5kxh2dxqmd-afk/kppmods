@@ -1,0 +1,7 @@
+vendor/
+node_modules/
+.venv/
+.cache/
+/build/
+/dist/
+src/common/hermes/tables.inc

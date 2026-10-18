@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "id": "system-tools",
+  "version": "2.0.0-r23",
+  "title": "Kindle Tools",
+  "actions": {
+    "library": {
+      "argv": [
+        "/usr/bin/lipc-set-prop",
+        "com.lab126.appmgrd",
+        "start",
+        "app://com.lab126.KPPMainApp/?view=KPP_LIBRARY"
+      ],
+      "user": "framework"
+    },
+    "settings": {
+      "argv": ["/bin/sh", "settings.sh"],
+      "user": "framework"
+    }
+  },
+  "apps": [
+    {
+      "id": "library",
+      "title": "Library",
+      "icon": "assets/library.svg",
+      "action": "library"
+    },
+    {
+      "id": "settings",
+      "title": "Settings",
+      "icon": "assets/settings.svg",
+      "action": "settings"
+    }
+  ],
+  "needs": []
+}

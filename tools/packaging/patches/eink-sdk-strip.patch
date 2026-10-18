@@ -1,0 +1,25 @@
+--- a/support/scripts/build-opkg
++++ b/support/scripts/build-opkg
+@@ -278,6 +278,11 @@
+ 	fi
+ 	mode=$(stat -c '%a' "$file")
+ 	chmod u+w "$file"
++	# Strip before patchelf relocates ELF sections across load segments.
++	case "$file" in
++		*.ko) "$OPKG_STRIP" --strip-debug "$file" ;;
++		*) "$OPKG_STRIP" --remove-section=.comment --remove-section=.note "$file" ;;
++	esac
+ 	if "$OPKG_PATCHELF" --print-rpath "$file" >/dev/null 2>&1; then
+ 		"$OPKG_PATCHELF" --make-rpath-relative "$work/data" \
+ 			--no-standard-lib-dirs "$file"
+@@ -371,10 +376,6 @@
+ 		exit 1
+ 	done < <(printf '%s\n' "$dynamic" | sed -n 's/.*Shared library: \[\([^]]*\)\].*/\1/p')
+ 
+-	case "$file" in
+-		*.ko) "$OPKG_STRIP" --strip-debug "$file" ;;
+-		*) "$OPKG_STRIP" --remove-section=.comment --remove-section=.note "$file" ;;
+-	esac
+ 	chmod "$mode" "$file"
+ done < <(find "$work/data" -type f -print0)
+ 
