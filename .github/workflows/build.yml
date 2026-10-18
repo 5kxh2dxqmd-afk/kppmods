@@ -1,0 +1,76 @@
+name: Kindle builds
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [kindlehf, kindlepw2]
+        include:
+          - target: kindlehf
+            toolchain: kindlehf
+            toolchain_root: arm-kindlehf-linux-gnueabihf
+          - target: kindlepw2
+            toolchain: kindlepw2
+            toolchain_root: arm-kindlepw2-linux-gnueabi
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes cmake librsvg2-bin patch python3 zstd
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.11.0
+          cache: npm
+
+      - name: Download Kindle cross-toolchain
+        env:
+          TOOLCHAIN: ${{ matrix.toolchain }}
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/x-tools"
+          curl --fail --location --retry 3 \
+            "https://github.com/koreader/koxtoolchain/releases/download/2026.08/${TOOLCHAIN}.tar.zst" \
+            --output "$RUNNER_TEMP/${TOOLCHAIN}.tar.zst"
+          tar --zstd -xf "$RUNNER_TEMP/${TOOLCHAIN}.tar.zst" -C "$GITHUB_WORKSPACE"
+
+      - name: Initialize source dependencies
+        run: tools/build/init-dependencies.sh
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Configure
+        env:
+          KPPMODS_TOOLCHAIN_ROOT: ${{ github.workspace }}/x-tools/${{ matrix.toolchain_root }}
+        run: cmake --preset "${{ matrix.target }}"
+
+      - name: Compile and install
+        env:
+          KPPMODS_TOOLCHAIN_ROOT: ${{ github.workspace }}/x-tools/${{ matrix.toolchain_root }}
+        run: |
+          cmake --build --preset "${{ matrix.target }}" --parallel 4
+          cmake --install "build/${{ matrix.target }}"
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: kppmods-${{ matrix.target }}
+          path: dist/${{ matrix.target }}/
+          if-no-files-found: error
